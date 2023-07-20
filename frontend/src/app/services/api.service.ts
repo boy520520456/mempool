@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { CpfpInfo, OptimizedMempoolStats, AddressInformation, LiquidPegs, ITranslators,
-  PoolStat, BlockExtended, TransactionStripped, RewardStats, AuditScore, BlockSizesAndWeights, RbfTree, BlockAudit } from '../interfaces/node-api.interface';
-import { Observable } from 'rxjs';
+  PoolStat, BlockExtended, TransactionStripped, RewardStats, AuditScore, BlockSizesAndWeights, RbfTree, BlockAudit, Acceleration } from '../interfaces/node-api.interface';
+import { Observable, of } from 'rxjs';
 import { StateService } from './state.service';
 import { WebsocketResponse } from '../interfaces/websocket.interface';
 import { Outspend, Transaction } from '../interfaces/electrs.interface';
@@ -322,5 +322,9 @@ export class ApiService {
       this.apiBaseUrl + this.apiBasePath + '/api/v1/historical-price' +
         (timestamp ? `?timestamp=${timestamp}` : '')
     );
+  }
+
+  getAccelerations$(): Observable<Acceleration[]> {
+    return this.httpClient.get<Acceleration[]>(this.apiBaseUrl + this.apiBasePath + '/api/v1/accelerations');
   }
 }
