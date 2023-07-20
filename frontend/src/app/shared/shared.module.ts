@@ -92,6 +92,8 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { GeolocationComponent } from '../shared/components/geolocation/geolocation.component';
 import { TestnetAlertComponent } from './components/testnet-alert/testnet-alert.component';
 import { GlobalFooterComponent } from './components/global-footer/global-footer.component';
+import { AccelerationsListComponent } from '../components/accelerations-list/accelerations-list.component';
+import { AccelerationStatsComponent } from '../components/acceleration-stats/acceleration-stats.component';
 
 import { MempoolBlockOverviewComponent } from '../components/mempool-block-overview/mempool-block-overview.component';
 import { ClockchainComponent } from '../components/clockchain/clockchain.component';
@@ -194,7 +196,9 @@ import { OnlyVsizeDirective, OnlyWeightDirective } from './components/weight-dir
     ClockComponent,
     ClockFaceComponent,
     OnlyVsizeDirective,
-    OnlyWeightDirective
+    OnlyWeightDirective,
+    AccelerationsListComponent,
+    AccelerationStatsComponent,
   ],
   imports: [
     CommonModule,
@@ -306,6 +310,8 @@ import { OnlyVsizeDirective, OnlyWeightDirective } from './components/weight-dir
     GeolocationComponent,
     PreviewTitleComponent,
     GlobalFooterComponent,
+    AccelerationsListComponent,
+    AccelerationStatsComponent,
 
     MempoolBlockOverviewComponent,
     ClockchainComponent,
