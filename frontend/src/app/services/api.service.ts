@@ -325,6 +325,14 @@ export class ApiService {
   }
 
   getAccelerations$(): Observable<Acceleration[]> {
-    return this.httpClient.get<Acceleration[]>(this.apiBaseUrl + this.apiBasePath + '/api/v1/accelerations');
+    return this.httpClient.get<Acceleration[]>(this.apiBaseUrl + this.apiBasePath + '/api/v1/accelerator/accelerations');
+  }
+
+  getAccelerationHistory$(interval?: string): Observable<Acceleration[]> {
+    const params: { timeframe?: string, status?: string, pool?: string, blockHash?: string} = {};
+    if (interval != null) {
+      params.timeframe = interval;
+    }
+    return this.httpClient.get<Acceleration[]>(this.apiBaseUrl + this.apiBasePath + '/api/v1/accelerator/accelerations/history', { params });
   }
 }
