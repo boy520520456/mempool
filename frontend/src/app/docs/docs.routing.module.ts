@@ -57,6 +57,10 @@ if (browserWindowEnv.BASE_MODULE && (browserWindowEnv.BASE_MODULE === 'bisq' || 
   ];
 }
 
+if (browserWindowEnv.ACCELERATOR) {
+  routes = [];
+}
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })

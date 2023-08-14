@@ -250,101 +250,6 @@ let routes: Routes = [
     ]
   },
   {
-    path: '',
-    pathMatch: 'full',
-    loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
-  },
-  {
-    path: '',
-    component: MasterPageComponent,
-    children: [
-      {
-        path: 'mining/blocks',
-        redirectTo: 'blocks',
-        pathMatch: 'full'
-      },
-      {
-        path: 'tx/push',
-        component: PushTransactionComponent,
-      },
-      {
-        path: 'about',
-        component: AboutComponent,
-      },
-      {
-        path: 'blocks',
-        component: BlocksList,
-      },
-      {
-        path: 'rbf',
-        component: RbfList,
-      },
-      {
-        path: 'tools/calculator',
-        component: CalculatorComponent
-      },
-      {
-        path: 'terms-of-service',
-        component: TermsOfServiceComponent
-      },
-      {
-        path: 'privacy-policy',
-        component: PrivacyPolicyComponent
-      },
-      {
-        path: 'trademark-policy',
-        component: TrademarkPolicyComponent
-      },
-      {
-        path: 'address/:id',
-        children: [],
-        component: AddressComponent,
-        data: {
-          ogImage: true,
-          networkSpecific: true,
-        }
-      },
-      {
-        path: 'tx',
-        data: { networkSpecific: true },
-        component: StartComponent,
-        children: [
-          {
-            path: ':id',
-            component: TransactionComponent
-          },
-        ],
-      },
-      {
-        path: 'block',
-        data: { networkSpecific: true },
-        component: StartComponent,
-        children: [
-          {
-            path: ':id',
-            component: BlockComponent,
-            data: {
-              ogImage: true
-            }
-          },
-        ],
-      },
-      {
-        path: 'docs',
-        loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
-      },
-      {
-        path: 'api',
-        loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
-      },
-      {
-        path: 'lightning',
-        data: { networks: ['bitcoin'] },
-        loadChildren: () => import('./lightning/lightning.module').then(m => m.LightningModule)
-      },
-    ],
-  },
-  {
     path: 'preview',
     children: [
       {
@@ -378,15 +283,115 @@ let routes: Routes = [
     data: { networks: ['bitcoin', 'liquid'] },
     component: StatusViewComponent
   },
-  {
-    path: '',
-    loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: ''
+  // },
 ];
+
+if (browserWindowEnv && !browserWindowEnv.ACCELERATOR) {
+  routes.push(
+    {
+      path: '',
+      pathMatch: 'full',
+      loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
+    },
+    {
+      path: '',
+      component: MasterPageComponent,
+      children: [
+        {
+          path: 'mining/blocks',
+          redirectTo: 'blocks',
+          pathMatch: 'full'
+        },
+        {
+          path: 'tx/push',
+          component: PushTransactionComponent,
+        },
+        {
+          path: 'about',
+          component: AboutComponent,
+        },
+        {
+          path: 'blocks',
+          component: BlocksList,
+        },
+        {
+          path: 'rbf',
+          component: RbfList,
+        },
+        {
+          path: 'tools/calculator',
+          component: CalculatorComponent
+        },
+        {
+          path: 'terms-of-service',
+          component: TermsOfServiceComponent
+        },
+        {
+          path: 'privacy-policy',
+          component: PrivacyPolicyComponent
+        },
+        {
+          path: 'trademark-policy',
+          component: TrademarkPolicyComponent
+        },
+        {
+          path: 'address/:id',
+          children: [],
+          component: AddressComponent,
+          data: {
+            ogImage: true,
+            networkSpecific: true,
+          }
+        },
+        {
+          path: 'tx',
+          data: { networkSpecific: true },
+          component: StartComponent,
+          children: [
+            {
+              path: ':id',
+              component: TransactionComponent
+            },
+          ],
+        },
+        {
+          path: 'block',
+          data: { networkSpecific: true },
+          component: StartComponent,
+          children: [
+            {
+              path: ':id',
+              component: BlockComponent,
+              data: {
+                ogImage: true
+              }
+            },
+          ],
+        },
+        {
+          path: 'docs',
+          loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
+        },
+        {
+          path: 'api',
+          loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
+        },
+        {
+          path: 'lightning',
+          data: { networks: ['bitcoin'] },
+          loadChildren: () => import('./lightning/lightning.module').then(m => m.LightningModule)
+        },
+      ],
+    },
+    {
+      path: '',
+      loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
+    },
+  );
+}
 
 if (browserWindowEnv && browserWindowEnv.BASE_MODULE === 'bisq') {
   routes = [{

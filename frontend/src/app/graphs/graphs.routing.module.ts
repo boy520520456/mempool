@@ -30,7 +30,7 @@ const browserWindow = window || {};
 const browserWindowEnv = browserWindow.__env || {};
 const isLiquid = browserWindowEnv && browserWindowEnv.BASE_MODULE === 'liquid';
 
-const routes: Routes = [
+let routes: Routes = [
   {
     path: '',
     component: isLiquid ? LiquidMasterPageComponent : MasterPageComponent,
@@ -165,6 +165,10 @@ const routes: Routes = [
     component: TelevisionComponent
   },
 ];
+
+if (browserWindowEnv.ACCELERATOR) {
+  routes = [];
+}
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

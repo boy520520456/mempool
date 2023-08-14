@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Env, StateService } from '../../services/state.service';
 import { Observable, merge, of } from 'rxjs';
 import { LanguageService } from '../../services/language.service';
@@ -13,6 +13,8 @@ import { NavigationService } from '../../services/navigation.service';
 export class MasterPageComponent implements OnInit {
   @Input() headerVisible = true;
   @Input() footerVisibleOverride: boolean | null = null;
+  @Input() auth: any | null = null;
+  @Output() profileClicked = new EventEmitter<boolean>();
 
   env: Env;
   network$: Observable<string>;

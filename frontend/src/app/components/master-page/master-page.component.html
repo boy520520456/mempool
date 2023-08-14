@@ -1,12 +1,17 @@
 <ng-container *ngIf="{ val: network$ | async } as network">
 <header *ngIf="headerVisible">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" [ngClass]="{'dual-logos': subdomain}" [routerLink]="['/' | relativeUrl]" (click)="brandClick($event)">
-  <ng-template [ngIf]="subdomain">
-    <div class="subdomain_container">
-      <img [src]="'/api/v1/enterprise/images/' + subdomain + '/logo'" class="subdomain_logo">
+  <ng-template [ngIf]="auth">
+    <div class="profile_image_container" (click)="profileClicked.emit(true)">
+      <img [src]="'/api/v1/services/account/image/' + auth.user.username" class="profile_image">
     </div>
   </ng-template>
+  <a class="navbar-brand" [ngClass]="{'dual-logos': subdomain}" [routerLink]="['/' | relativeUrl]" (click)="brandClick($event)">
+    <ng-template [ngIf]="subdomain">
+      <div class="subdomain_container">
+        <img [src]="'/api/v1/enterprise/images/' + subdomain + '/logo'" class="subdomain_logo">
+      </div>
+    </ng-template>
     <ng-container *ngIf="{ val: connectionState$ | async } as connectionState">
       <app-svg-images *ngIf="!officialMempoolSpace" name="mempoolSpace" viewBox="0 0 500 126" class="mempool-logo" [ngStyle]="{'opacity': connectionState.val === 2 ? 1 : 0.5 }"></app-svg-images>
       <app-svg-images *ngIf="officialMempoolSpace" name="officialMempoolSpace" viewBox="0 0 500 126"></app-svg-images>
