@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, catchError, debounceTime, of, tap } from 'rxjs';
 import { Recommendedfees } from '../../interfaces/websocket.interface';
 import { WebsocketService } from '../../services/websocket.service';
-import { ServicesApiService } from '../../../../../services/src/app/services/services-api.service';
 import { StateService } from '../../services/state.service';
+import { ApiService } from '../../services/api.service';
 
 export const DEFAULT_BID_RATIO = 5;
 export const MIN_BID_RATIO = 2;
@@ -69,7 +69,7 @@ export class AcceleratorAccelerate2 implements OnInit, OnDestroy {
     private mempoolWebsocket: WebsocketService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private servicesApiService: ServicesApiService,
+    private apiService: ApiService,
     private mempoolStateService: StateService,
   ) {
   }
@@ -105,7 +105,7 @@ export class AcceleratorAccelerate2 implements OnInit, OnDestroy {
 
     this.mempoolWebsocket.want(['stats']);
 
-    this.servicesApiService.hasAccessToAccelerator$()
+    this.apiService.hasAccessToAccelerator$()
       .subscribe({
         error: (error) => {
           if (error.error === 'not_available') {
@@ -207,7 +207,7 @@ export class AcceleratorAccelerate2 implements OnInit, OnDestroy {
       this.estimateSubscription$.unsubscribe();
     }
     this.showSuccess = false;
-    this.estimateSubscription$ = this.servicesApiService.estimate$(txInput).pipe(
+    this.estimateSubscription$ = this.apiService.estimate$(txInput).pipe(
       tap((response) => {
         this.loading = false;
         if (response.status === 204) {
@@ -266,7 +266,7 @@ export class AcceleratorAccelerate2 implements OnInit, OnDestroy {
     if (this.accelerationSubscription$) {
       this.accelerationSubscription$.unsubscribe();
     }
-    this.accelerationSubscription$ = this.servicesApiService.accelerate$(
+    this.accelerationSubscription$ = this.apiService.accelerate$(
       this.form.get('txInput')?.value,
       this.form.get('userBid')?.value
     ).subscribe({

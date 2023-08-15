@@ -339,4 +339,16 @@ export class ApiService {
       .set('node_public_key', publicKey);
     return this.httpClient.get<any>(`${SERVICES_API_PREFIX}/lightning/claim/current`, { params, observe: 'response' });
   }
+
+  accelerate$(txInput: string, userBid: number) {
+    return this.httpClient.post<any>(`${SERVICES_API_PREFIX}/accelerator/accelerate`, { txInput: txInput, userBid: userBid });
+  }
+
+  estimate$(txInput: string) {
+    return this.httpClient.post<any>(`${SERVICES_API_PREFIX}/accelerator/estimate`, { txInput: txInput }, { observe: 'response' });
+  }
+
+  hasAccessToAccelerator$() {
+    return this.httpClient.get<any>(`${SERVICES_API_PREFIX}/accelerator`);
+  }
 }
