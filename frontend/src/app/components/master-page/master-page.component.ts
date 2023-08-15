@@ -14,6 +14,7 @@ export class MasterPageComponent implements OnInit {
   @Input() headerVisible = true;
   @Input() footerVisibleOverride: boolean | null = null;
   @Input() auth: any | null = null;
+  @Input() padding = '0px';
   @Output() profileClicked = new EventEmitter<boolean>();
 
   env: Env;

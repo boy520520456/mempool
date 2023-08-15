@@ -1,5 +1,5 @@
 <ng-container *ngIf="{ val: network$ | async } as network">
-<header *ngIf="headerVisible">
+<header *ngIf="headerVisible" style="position: fixed; width: 100%; z-index: 100;">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <ng-template [ngIf]="auth">
     <div class="profile_image_container" (click)="profileClicked.emit(true)">
@@ -66,6 +66,8 @@
   </div>
 </nav>
 </header>
+
+<span [style]="'padding-bottom:' + padding"></span>
 
 <app-testnet-alert *ngIf="network.val === 'testnet' || network.val === 'signet'"></app-testnet-alert>
 
