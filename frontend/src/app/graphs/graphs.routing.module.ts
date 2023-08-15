@@ -166,10 +166,6 @@ let routes: Routes = [
   },
 ];
 
-if (browserWindowEnv.ACCELERATOR) {
-  routes = [];
-}
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
