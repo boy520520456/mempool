@@ -92,6 +92,8 @@ export class TransactionComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('graphContainer')
   graphContainer: ElementRef;
 
+  showAccel = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

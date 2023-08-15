@@ -99,6 +99,7 @@ import { ClockFaceComponent } from '../components/clock-face/clock-face.componen
 import { ClockComponent } from '../components/clock/clock.component';
 import { CalculatorComponent } from '../components/calculator/calculator.component';
 import { BitcoinsatoshisPipe } from '../shared/pipes/bitcoinsatoshis.pipe';
+import { AcceleratorAccelerate2 } from '../components/accelerate2/accelerator-accelerate2.component';
 
 import { OnlyVsizeDirective, OnlyWeightDirective } from './components/weight-directives/weight-directives';
 
@@ -194,7 +195,8 @@ import { OnlyVsizeDirective, OnlyWeightDirective } from './components/weight-dir
     ClockComponent,
     ClockFaceComponent,
     OnlyVsizeDirective,
-    OnlyWeightDirective
+    OnlyWeightDirective,
+    AcceleratorAccelerate2
   ],
   imports: [
     CommonModule,
