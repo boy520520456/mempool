@@ -11,6 +11,8 @@
   <form [formGroup]="form" class="formGroup" (submit)="accelerate()" autocomplete="off" *ngIf="!loading && error !== 'waitlisted' && error !== 'not_verified'">
     <div *ngIf="estimate" class="d-flex flex-column w-100">
 
+      <input type="text" style="opacity: 0; height: 0px" id="userBid" formControlName="userBid">
+
       <h6>Transaction summary</h6>
       <div class="row mb-3">
         <div class="col">
